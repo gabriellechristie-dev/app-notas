@@ -78,8 +78,6 @@ Formato:
 
 ##  Próximos passos
 
-* Melhorar validação de entrada
-* Separar responsabilidades em módulos
-* Criar interface web (Flask + HTML + JS)
+* Melhorar validação de entrada e interface CLI
 
 ---
