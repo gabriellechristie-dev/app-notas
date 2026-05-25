@@ -1,5 +1,10 @@
 import json
 import os
+from rich.panel import Panel
+from rich.console import Console
+
+
+console = Console()
 
 
 # ------------------------
@@ -91,7 +96,7 @@ def excluir_nota(lista_de_notas):
     if 0 <= indice < len(lista_de_notas):
         lista_de_notas.pop(indice)
         salvar_dados(lista_de_notas)
-        print("Nota excluída com sucesso")
+        print("Nota excluída com sucesso!")
         return lista_de_notas
         
     else:
@@ -102,15 +107,18 @@ def excluir_nota(lista_de_notas):
 # MENU PRINCIPAL
 # ------------------------
 def menu():
+    
     lista_de_notas = carregar_dados()
     while True:
-        print("Menu de Notas")
-        print("1. Adicionar Nota")
-        print("2. Listar Notas")
-        print("3. Editar nota")
-        print("4. Excluir Nota")
-        print("5. Sair")
-        escolha = int(input("Digite a opção desejada:"))
+        titulo_menu = "Menu de Notas"
+        texto_menu ="""1. Adicionar Nota 
+2. Listar Notas 
+3. Editar nota 
+4. Excluir Nota 
+5. Sair,"""
+        painel_menu = Panel(texto_menu, title=titulo_menu, expand=False, border_style = "red")
+        console.print(painel_menu)
+        escolha = int(console.input("Digite a opção desejada:"))
         if escolha == 1:
             lista_de_notas = adicionar_nota(lista_de_notas)
         elif escolha == 2:
@@ -120,10 +128,10 @@ def menu():
         elif escolha == 4:
             lista_de_notas = excluir_nota(lista_de_notas)
         elif escolha == 5:
-            print("Saindo do programa. Até logo!")
+            console.print("Saindo do programa. Até logo!")
             break
         else:
-            print("Opção inválida, tente novamente.")
+            console.print("Opção inválida, tente novamente.")
 
 # ------------------------
 # EXECUÇÃO
